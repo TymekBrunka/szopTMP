@@ -1,2 +1,3 @@
 # szop
-Projekt sklep
+
+Projeks sklepu na lekcje
