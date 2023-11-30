@@ -1,0 +1,2 @@
+# szop
+Projekt sklep
