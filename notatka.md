@@ -56,3 +56,49 @@
       path('', include('store.urls')),
    ]
    ```
+9. Dodajemy folder `static` w `./ecommerce/` i w nim tworzymy foldery `css` i `images` i tworzymy w `css` `main.css`
+   do `./ecommerce/settings.py` dodajemy na górze
+   ```python
+   import os
+   ```
+   oraz na dole
+   ```python
+   STATICFILES_DIRS = [
+      os.path.join(BASE_DIR, 'static'),
+   ]
+   ```
+
+   i do pliku `main.html` dodajemy
+   ```html
+   {% load static %}
+   <!DOCTYPE html>
+   <html>
+      <head>
+         <meta charset="utf-8">
+         <title>Store</title>
+         <meta name="description" content="">
+         <meta name="viewport" content="width=device-width, initial-scale=1">
+         <link rel="stylesheet" href="">
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+         <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+      </head>
+      <body>
+         <h1>Menu</h1><br>
+         <div class="container">
+               {% block content %}
+
+               {% endblock content %}
+         </div>
+         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+      </body>
+   </html>
+   ```
+
+   i do reszty plików html dodajemy
+   ```html
+   {% extends 'store/main.html' %}
+   {% load static %}
+   {% block content %}
+      <h1>TYTUŁ</h1>
+   {% endblock content %}
+   ```
