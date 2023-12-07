@@ -6,3 +6,7 @@ Projekt sklepu na lekcje
 
 `python -m venv .venv`
 `.venv\Scripts\activate` lub `source .venv/bin/activate`
+
+## instalowanie bibliotek
+
+`pip install -r req.txt`
