@@ -201,3 +201,23 @@
    ```
 13. ściągamy `https://www.losto.net/images/arrow-down.png` i `https://www.losto.net/images/arrow-up.png`
    ze strony człuchowskiej strony.
+14. w `cart.html` zamieniamy `<h1>CART</h1>` na
+   ```html
+   <div class="row">
+        <div class="col=lg-12">
+            <div class="box-element">
+                <a class="btn btn-outline-dark" href="{% url 'store' %}">Continue shopping</a>
+                <br>
+                <table class="table">
+                    <tr>
+                        <th><h5>Items: <strong>4</strong></h5></th>
+                        <th><h5>Total: <strong>200.00</strong></h5></th>
+                        <th>
+                           <a class="btn btn-success" href="{% url 'checkout' %}" style="float:right; margin: 5px;">checkout</a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+   </div>
+   ```
