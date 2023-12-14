@@ -199,3 +199,5 @@
         </div>
     </div>
    ```
+13. ściągamy `https://www.losto.net/images/arrow-down.png` i `https://www.losto.net/images/arrow-up.png`
+   ze strony człuchowskiej strony.
