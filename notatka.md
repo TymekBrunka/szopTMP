@@ -152,3 +152,27 @@
    ```html
    <a class="nav-link active" aria-current="page" href="{% url 'cart' %}">Cart</a>
    ```
+12. Ściągamy `main.css` z `http://losto.net/images/main.css` i podmieniamy go.
+
+   Ściągamy też `https://losto.net/images/cart.png`.
+
+13. Po
+   ```html
+   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'cart' %}">Cart</a>
+                  </li>
+                </ul>
+   ```
+   dodajemy
+   ```html
+   <div class="form-inline my-2 my-lg-0">
+                    <a href="#" class="btn btn-warning">Login</a>
+
+                    <a href="{% url 'cart' %}">
+                        <img id="cart-icon" src="{% static 'images/cart.png' %}">
+                    </a>
+
+                    <p id="cart-total"> 0 </p>
+                </div>
+   ```
