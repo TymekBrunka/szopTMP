@@ -176,3 +176,26 @@
                     <p id="cart-total"> 0 </p>
                 </div>
    ```
+   a w `main.css` zamiemy `display` w `#cart-total` na `inline-block`.
+
+   Pobieramy obrazek z `https://www.losto.net/images/placeholder.png`
+12. W `store.html` zamieniamy `<h1>STORE</h1>` na
+   ```html
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="box-element product">
+                <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="box-element product">
+                <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="box-element product">
+                <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+            </div>
+        </div>
+    </div>
+   ```
