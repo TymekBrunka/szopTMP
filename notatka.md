@@ -102,3 +102,4 @@
       <h1>TYTUŁ</h1>
    {% endblock content %}
    ```
+10. zamieniamy `<h1>menu</h1>` na przykład z bootstrapa i zamieniamy `...tetriary` na `navbar-dark bg-dark`
