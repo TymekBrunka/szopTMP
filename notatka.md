@@ -213,11 +213,80 @@
                         <th><h5>Items: <strong>4</strong></h5></th>
                         <th><h5>Total: <strong>200.00</strong></h5></th>
                         <th>
-                           <a class="btn btn-success" href="{% url 'checkout' %}" style="float:right; margin: 5px;">checkout</a>
+                            <a class="btn btn-success" href="{% url 'checkout' %}" style="float:right; margin: 5px;">checkout</a>
                         </th>
                     </tr>
                 </table>
             </div>
+            <br>
+            <div class="box-element">
+                <div class="cart-row">
+                    <div style="flex:2;">
+                        <strong>
+                            <img width="200px" src="{% static 'images/placeholder.png' %}">
+                        </strong>
+                    </div>
+                    <div style="flex:2;">
+                        <strong>Produkt 1</strong>
+                    </div>
+                    <div style="flex:1;">
+                        <strong>100.00 PLN</strong>
+                    </div>
+                    <div style="flex:1;">
+                        <p class="quantity">2</p>
+                        <div class="quantity">
+                            <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}">
+                            <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}">
+                        </div>
+                    </div>
+                    <div style="flex:1;">
+                        <strong>200.00 PLN</strong>
+                    </div>
+                </div>
+                <div class="cart-row">
+                    <div style="flex:2;">
+                        <strong>
+                            <img width="200px" src="{% static 'images/placeholder.png' %}">
+                        </strong>
+                    </div>
+                    <div style="flex:2;">
+                        <strong>Item</strong>
+                    </div>
+                    <div style="flex:1;">
+                        <strong>Price</strong>
+                    </div>
+                    <div style="flex:1;">
+                        <strong>Quantity</strong>
+                    </div>
+                    <div style="flex:1;">
+                        <strong>Total</strong>
+                    </div>
+                </div>
+            </div>
         </div>
-   </div>
+    </div>
    ```
+15. w `checkout.html` zamieniamy `<h1>CHECKOUT</h1>` na
+    ```html
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box-element">
+                <form id="form">
+                    <div class="user-info">
+                        <div class="form-field">
+                            <input required class="form-control" type="text" name="name" placeholder="Name...">
+                        </div>
+                        <div class="form-field">
+                            <input required class="form-control" type="email" name="email" placeholder="Email...">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="box-element">
+
+            </div>
+        </div>
+    </div>
+    ```
