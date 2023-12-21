@@ -280,9 +280,33 @@
                             <input required class="form-control" type="email" name="email" placeholder="Email...">
                         </div>
                     </div>
+                    <div class="shipping-info">
+                        <hr>
+                            <p>Shipping info</p>
+                        </hr>
+                        <div class="form-field">
+                            <input required class="form-control" type="address" name="email" placeholder="Address...">
+                        </div>
+                        <div class="form-field">
+                            <input required class="form-control" type="city" name="email" placeholder="City...">
+                        </div>
+                        <div class="form-field">
+                            <input required class="form-control" type="state" name="email" placeholder="State...">
+                        </div>
+                        <div class="form-field">
+                            <input required class="form-control" type="zipcode" name="email" placeholder="Zip code...">
+                        </div>
+                        <div class="form-field">
+                            <input required class="form-control" type="country" name="email" placeholder="Country...">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
                 </form>
             </div>
         </div>
+
         <div class="col-lg-6">
             <div class="box-element">
 
