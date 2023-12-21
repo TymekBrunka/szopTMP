@@ -304,12 +304,36 @@
                     <hr>
                     <input id="form-button" class="btn btn-success btn-block" type="submit" value="Continue">
                 </form>
+
+                <hr>
+                <div class="box-element hidden" id="payment-info">
+                    <small>PayPal Options</small>
+                </div>
             </div>
         </div>
 
         <div class="col-lg-6">
             <div class="box-element">
-
+                <a class="btn btn-outline-dark" href="{% url 'cart' %}">Back to cart</a>
+                <hr>
+                <h3>Order summary</h3>
+                <hr>
+                <div class="cart-row">
+                    <div style="flex: 2">
+                        <img class="row-image" src="{% static 'images/placeholder.png' %}">
+                    </div>
+                    <div style="flex: 2">
+                        Product 1
+                    </div>
+                    <div style="flex: 2">
+                        20.00 PLN
+                    </div>
+                    <div style="flex: 2">
+                        x2
+                    </div>
+                </div>
+                <h5>Items: 2</h5>
+                <h5>Total: 40.00 PLN</h5>
             </div>
         </div>
     </div>
