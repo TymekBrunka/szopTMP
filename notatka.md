@@ -338,4 +338,24 @@
         </div>
     </div>
     ```
-16. 
+16. # DODAWANIE MODELU
+    do `ecomerce/store/models.py` dodajemy
+    ```python
+    class Customer(models.Model):
+        user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+        name = models.CharField(max_length=200, null=True)
+        email = models.CharField(max_length=200)
+
+        
+        def __str__(self):
+            return self.name + ' ' + self.email
+    ```
+    
+    do `ecomerce/store/admin` dodajemy
+    ```python
+    from .models import *
+
+    admin.site.register(Customer)
+    ```
+
+    uruchamiamy `python ecommerce\manage.py makemigrations` i `python ecommerce\manage.py migrate`
