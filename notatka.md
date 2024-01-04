@@ -440,3 +440,5 @@
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(11).png)
     uruchamiamy `cd ecommerce` i `python manage.py createsuperuser`
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(12).png)
+    i ...
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(13).png)
