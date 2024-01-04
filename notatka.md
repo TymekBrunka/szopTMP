@@ -399,3 +399,44 @@
     ```
 
     uruchamiamy `python ecommerce\manage.py makemigrations` i `python ecommerce\manage.py migrate`
+17. # Dodawanie bazy
+    po dodaniu postgres z hasłem postgres z domyślnymi ustawieniami
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(1).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(2).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(3).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(4).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(5).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(6).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(7).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(8).png)
+
+18. # Zmiana bazy w ustawieniach
+    usuwamy `ecommerce/db.sqlite3`
+
+    i zamieniamy w `ecommerce/ecommerce/settings.py`
+    ```python
+    DATABASES = {
+    'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+    ```
+    na
+    ```python
+    DATABASES = {
+        'default': {
+            'ENGINE'   : 'django.db.backends.postgresql_psycopg2',
+            'NAME'     : "shop3",
+            "USER"     : "postgres",
+            "PASSWORD" : "postgres",
+            "HOST"     : "localhost",
+            "PORT"     : "5432"
+        }
+    }
+    ```
+    i uruchamiamy `python ecommerce/manage.py migrate` po makemigrations
+    i odświerzamy dbeavera
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(11).png)
+    uruchamiamy `cd ecommerce` i `python manage.py createsuperuser`
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(12).png)
