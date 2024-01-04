@@ -443,3 +443,9 @@
     i ...
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(13).png)
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(14).png)
+19. # Wstawianie prawdziwych danych na stronkach / Dynamiczne dane
+    naprawiamy `ecommerce/models.py` i zamieniamy w klasie Product ... na 
+    ```python
+    def __str__(self):
+        return self.name + " " + ( "digital" if self.digital else "non-digital")
+    ```
