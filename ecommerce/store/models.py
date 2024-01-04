@@ -16,7 +16,7 @@ class Product(models.Model):
     digital = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
-        return self.name + " " + ( "digital" if self.digital else "non-digital")
+        return ( "(d) " if self.digital else "") + self.name
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)

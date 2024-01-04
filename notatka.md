@@ -447,5 +447,46 @@
     naprawiamy `ecommerce/models.py` i zamieniamy w klasie Product ... na 
     ```python
     def __str__(self):
-        return self.name + " " + ( "digital" if self.digital else "non-digital")
+        return ( "(d) " if self.digital else "") + self.name
     ```
+
+    i w `ecommerce/store/views.py` dodajemy na górze
+    ```python
+    from .models import *
+    ```
+
+    i aktualizujemy widoki
+    ```python
+    def store(req):
+        products = Product.objects.all()
+        context = {'products' : products}
+        return render(req, 'store/store.html', context)
+
+    def cart(req):
+        context = {}
+        return render(req, 'store/cart.html', context)
+
+    def checkout(req):
+        context = {}
+        return render(req, 'store/checkout.html', context)
+    ```
+
+    `store.html`
+    ```html
+    {% extends 'store/main.html' %}
+    {% load static %}
+    {% block content %}
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-4">
+                <div class="box-element product">
+                    <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+                    <h6><strong> {{ product.name }} </strong></h6>
+                    <p style="display: inline-block;"> {{ product.price }} </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endblock content %}
+    ```
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(15).png)
