@@ -442,3 +442,4 @@
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(12).png)
     i ...
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(13).png)
+    ![zdj](./zdjęcia/Zrzut%20ekranu%20(14).png)
