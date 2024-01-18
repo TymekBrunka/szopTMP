@@ -490,3 +490,5 @@
     {% endblock content %}
     ```
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(15).png)
+
+20.
