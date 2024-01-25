@@ -491,4 +491,159 @@
     ```
     ![zdj](./zdjęcia/Zrzut%20ekranu%20(15).png)
 
-20.
+20. #Dodawanie ststic img
+    Dodajemy do `models.py` w Product
+    ```python
+    image = models.ImageField(null=True, blank=True)
+    ```
+    i pobieramy pillow
+    
+    Dodajemy w `settings.py`
+    ```python
+    MEDIA_URL = '/images/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+    ```
+
+    W  `./ecommerce/urls.py` zamieniamy na
+    ```python
+    from django.contrib import admin
+    from django.urls import path, include
+    from django.conf.urls.static import static
+    from django.conf import settings
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('store.urls')),
+    ]
+
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    ```
+
+    do `models.py` dodajemy funkcję
+    ```python
+    @property
+    def imageURL(self):
+        try:
+            url = self.image.url
+        except:
+            url = ''
+        return url
+    ```
+
+    `store.html` = 
+    ```html
+    {% extends 'store/main.html' %}
+    {% load static %}
+    {% block content %}
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-4">
+                <div class="box-element product">
+                    <img class="thumbnail" src="{{ product.imageURL }}">
+                    <h6><strong> {{ product.name }} </strong></h6>
+                    <p style="display: inline-block;"> {{ product.price | floatformat:2 }} PLN</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endblock content %}
+    ```
+21. #dodajemy zakup
+    dodajemy customera
+    dodajemy order
+    dodajemy orderitem
+    dodajemy 
+
+23. podmieniamy views
+    ```python
+    def cart(req):
+        if req.user.is_authenticated:
+            customer = req.user.customer
+            order, created = Order.objects.get_or_create(customer=customer, complete=False)
+            items = order.orderitem_set.all()
+        else:
+            items = {}
+        context = {'items' : items, 'order' : order}
+        return render(req, 'store/cart.html', context)
+    ```
+
+    i do `main.html` dodajemy
+    ```html
+        <script>
+          var user = '{{ request.user }}'
+        </script>
+    ```
+
+    oraz zamieniamy `cart.html` na 
+    ```html
+    {% extends 'store/main.html' %}
+    {% load static %}
+    {% block content %}
+        <div class="row">
+            <div class="col=lg-12">
+                <div class="box-element">
+                    <a class="btn btn-outline-dark" href="{% url 'store' %}">Continue shopping</a>
+                    <br>
+                    <table class="table">
+                        <tr>
+                            <th><h5>Items: <strong>{{ order.get_cart_items }}</strong></h5></th>
+                            <th><h5>Total: <strong>{{ order.get_cart_total | floatformat:2 }} PLN</strong></h5></th>
+                            <th>
+                                <a class="btn btn-success" href="{% url 'checkout' %}" style="float:right; margin: 5px;">checkout</a>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                <br>
+                <div class="box-element">
+                    {% for item in items %}
+                    <div class="cart-row">
+                        <div style="flex:2;">
+                            <strong>
+                                <img width="200px" src="{{ item.product.imageURL }}">
+                            </strong>
+                        </div>
+                        <div style="flex:2;">
+                            <strong>{{ item.product.name }}</strong>
+                        </div>
+                        <div style="flex:1;">
+                            <strong>{{ item.product.price | floatformat:2}} PLN</strong>
+                        </div>
+                        <div style="flex:1;">
+                            <p class="quantity">{{ item.quantity }}</p>
+                            <div class="quantity">
+                                <img class="chg-quantity" src="{% static 'images/arrow-up.png' %}">
+                                <img class="chg-quantity" src="{% static 'images/arrow-down.png' %}">
+                            </div>
+                        </div>
+                        <div style="flex:1;">
+                            <strong>{{ item.get_total | floatformat:2 }}</strong>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endblock content %}
+    ```
+    
+    i w models.py w Order dodajemy funkcje
+    ```python
+    @property
+    def get_cart_total(self):
+        orderitems = self.orderitems_set.all()
+        total = sum([ item.get_total for item in orderitems ])
+        return total
+    
+    @property
+    def get_cart_items(self):
+        orderitems = self.orderitems_set.all()
+        total = sum([item.quantity for item in orderitems])
+    ```
+
+    i w OrderItems:
+    ```python
+    @property
+    def get_total(self):
+        return self.product.price * self.quantity
+    ```

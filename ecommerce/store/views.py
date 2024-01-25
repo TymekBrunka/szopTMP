@@ -8,7 +8,13 @@ def store(req):
     return render(req, 'store/store.html', context)
 
 def cart(req):
-    context = {}
+    if req.user.is_authenticated:
+        customer = req.user.customer
+        order, created = Order.objects.get_or_create(customer=customer, complete=False)
+        items = order.orderitem_set.all()
+    else:
+        items = {}
+    context = {'items' : items, 'order' : order}
     return render(req, 'store/cart.html', context)
 
 def checkout(req):

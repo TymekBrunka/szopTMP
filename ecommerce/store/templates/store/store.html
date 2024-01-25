@@ -5,9 +5,9 @@
         {% for product in products %}
         <div class="col-lg-4">
             <div class="box-element product">
-                <img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+                <img class="thumbnail" src="{{ product.imageURL }}">
                 <h6><strong> {{ product.name }} </strong></h6>
-                <p style="display: inline-block;"> {{ product.price }} </p>
+                <p style="display: inline-block;"> {{ product.price | floatformat:2 }} PLN</p>
             </div>
         </div>
         {% endfor %}
