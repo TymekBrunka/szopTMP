@@ -647,3 +647,67 @@
     def get_total(self):
         return self.product.price * self.quantity
     ```
+24. Dodajemy klawisze dodające produkty do koszyka 
+	
+	zamieniamy store.html na
+	```html
+	{% extends 'store/main.html' %}
+	{% load static %}
+	{% block content %}
+	    <div class="row">
+	        {% for product in products %}
+				<div class="col-lg-4">
+					<div class="box-element product">
+						<img class="thumbnail" src="{{ product.imageURL }}">
+						<h6><strong> {{ product.name }} </strong></h6>
+						<hr>
+						<button data-product="{{ product.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+						<a class="btn btn-outline-success" href="#">View</a>
+						<p style="display: inline-block;"> {{ product.price | floatformat:2 }} PLN</p>
+					</div>
+				</div>
+	        {% endfor %}
+	    </div>
+	{% endblock content %}
+	```
+    
+	a do main.html
+	```html
+	<script src="{% static 'js/cart.js' %}" type="text/javascript"></script>
+	```
+	 i w script
+
+	```html
+			function getToken(name){
+				var cookieValue = null;
+				if (document.cookie && document.cookie != ''){
+					var cookies = document.cookie.split(";")
+					for (cookie of cookies){
+						cookie = cookie.trim();
+						if (cookie.substring(0, name.length + 1) === (name+"=")){
+							cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+							break;
+						}
+					}
+				}
+				return cookieValue
+			}
+			var csrftoken = getToken('csrftoken')
+	```
+    
+	importujemy w views.py
+	```python
+	from django.http import JsonResponse
+	```
+
+	i dodajemy jeszcze
+	```python
+	def updateItem(request):
+		return JsonResponse('Item added ', safe=False)
+	```
+
+	i dodajemy do ecommerce/store/urls.py
+	```python
+    path('update_item', views.updateItem, name="update-item"),
+	```
+	dodajemy `ecommerce\static\js\cart.js`
